@@ -63,5 +63,11 @@ pipeline {
       }
     }
 
+    stage('Push image') {
+      steps {
+        sh 'docker push 1rubs/webserver:v4'
+      }
+    }
+
   }
 }
