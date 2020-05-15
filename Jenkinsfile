@@ -26,34 +26,40 @@ pipeline {
       }
     }
 
-    stage('CI') {
-      parallel {
-        stage('CI') {
-          steps {
-            echo 'Iniciando CI process'
-            sh 'ls -ltr'
-          }
-        }
+    stage('imagen') {
+      steps {
+        echo 'Iniciando CI process'
+        sh 'docker build -t 1rubs/webserver:v4 .'
+      }
+    }
 
-        stage('image') {
-          steps {
-            sh 'docker build -t e1rubs/webserver:v4 .'
-          }
-        }
-
-        stage('container') {
-          steps {
-            sh 'docker run -d --name WebServerCI2 -p 83:80 e1rubs/webserver:v4'
-          }
-        }
-
+    stage('container') {
+      steps {
+        sh 'docker images'
+        sh 'docker build -d --name WebServerCI -p 50:80 1rubs/webserver:v4'
       }
     }
 
     stage('validate') {
-      steps {
-        sh 'docker images'
-        sh 'docker ps'
+      parallel {
+        stage('validate') {
+          steps {
+            echo 'validating image and container'
+          }
+        }
+
+        stage('imagen') {
+          steps {
+            sh 'docker images'
+          }
+        }
+
+        stage('') {
+          steps {
+            sh 'docker ps'
+          }
+        }
+
       }
     }
 
