@@ -52,7 +52,7 @@ pipeline {
 
     stage('validate') {
       steps {
-        sh 'docker iamges'
+        sh 'docker images'
         sh 'docker ps'
       }
     }
