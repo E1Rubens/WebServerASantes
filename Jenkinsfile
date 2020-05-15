@@ -26,5 +26,35 @@ pipeline {
       }
     }
 
+    stage('CI') {
+      parallel {
+        stage('CI') {
+          steps {
+            echo 'Iniciando CI process'
+          }
+        }
+
+        stage('image') {
+          steps {
+            sh 'docker build -t e1rubs/webserver:v4 .'
+          }
+        }
+
+        stage('container') {
+          steps {
+            sh 'docker run -d --name WebServerCI -P 9090:8080 e1rubs/webserver:v44'
+          }
+        }
+
+      }
+    }
+
+    stage('validate') {
+      steps {
+        sh 'docker iamges'
+        sh 'docker ps'
+      }
+    }
+
   }
 }
