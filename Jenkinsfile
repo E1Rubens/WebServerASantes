@@ -36,7 +36,7 @@ pipeline {
     stage('container') {
       steps {
         sh 'docker images'
-        sh 'docker build -d --name WebServerCI -p 50:80 1rubs/webserver:v4'
+        sh 'docker run -d --name WebServerCI -p 50:80 1rubs/webserver:v4'
       }
     }
 
@@ -54,7 +54,7 @@ pipeline {
           }
         }
 
-        stage('') {
+        stage('error') {
           steps {
             sh 'docker ps'
           }
