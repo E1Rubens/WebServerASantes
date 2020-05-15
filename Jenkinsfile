@@ -43,7 +43,7 @@ pipeline {
 
         stage('container') {
           steps {
-            sh 'docker run -d --name WebServerCI -p 83:80 e1rubs/webserver:v4'
+            sh 'docker run -d --name WebServerCI2 -p 83:80 e1rubs/webserver:v4'
           }
         }
 
