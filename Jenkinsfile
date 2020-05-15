@@ -31,6 +31,7 @@ pipeline {
         stage('CI') {
           steps {
             echo 'Iniciando CI process'
+            sh 'ls -ltr'
           }
         }
 
