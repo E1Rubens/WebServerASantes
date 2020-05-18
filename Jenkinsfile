@@ -66,7 +66,6 @@ pipeline {
     stage('Push image') {
       steps {
         sh 'docker login -u "e1rubs" -p "Rub3nsHub" docker.io'
-        sh 'docker push 1rubs/webserver:v4'
       }
     }
 
